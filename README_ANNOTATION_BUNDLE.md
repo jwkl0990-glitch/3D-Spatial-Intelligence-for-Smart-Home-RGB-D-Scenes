@@ -85,9 +85,29 @@ The file `artifacts/manual_object_state_labels.json` stores the current shared a
 If multiple people are labeling in parallel, do **not** each overwrite the same file independently forever.
 Best practice:
 
-- each person works on their own copy
+- each person uses their own label file inside `artifacts/labels/`
+- each person runs only their assigned scene range
 - commit/push regularly if using GitHub
-- merge JSON carefully, or coordinate by split / assigned scene ranges
+
+Example for scenes `1-70`:
+
+```bash
+./launch_annotation_ui.sh \
+  --labels artifacts/labels/jw_1_70.json \
+  --scene-start 1 \
+  --scene-end 70
+```
+
+Example for scenes `71-138`:
+
+```bash
+./launch_annotation_ui.sh \
+  --labels artifacts/labels/teammate_71_138.json \
+  --scene-start 71 \
+  --scene-end 138
+```
+
+This keeps each person's progress in a separate JSON file and dramatically reduces merge conflicts.
 
 ## Current Saved Work
 

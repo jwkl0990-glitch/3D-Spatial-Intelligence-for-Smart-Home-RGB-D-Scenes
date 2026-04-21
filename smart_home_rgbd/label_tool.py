@@ -45,11 +45,20 @@ class LabelServer:
         manifest_path: Path,
         label_store_path: Path,
         split_filter: str | None,
+        scene_start: int | None,
+        scene_end: int | None,
     ) -> None:
         ensure_manifest(dataset_root, seed_csv, manifest_path)
         manifest = load_instance_manifest(manifest_path)
         if split_filter is not None:
             manifest = [scene for scene in manifest if scene.get("split") == split_filter]
+        if scene_start is not None or scene_end is not None:
+            start_index = 1 if scene_start is None else max(scene_start, 1)
+            end_index = len(manifest) if scene_end is None else min(scene_end, len(manifest))
+            if start_index > end_index:
+                manifest = []
+            else:
+                manifest = manifest[start_index - 1 : end_index]
 
         self.dataset_root = dataset_root
         self.manifest = manifest
@@ -146,6 +155,8 @@ def run_label_tool(
     manifest_path: Path = DEFAULT_INSTANCE_MANIFEST_JSON,
     label_store_path: Path = DEFAULT_INSTANCE_LABELS_JSON,
     split_filter: str | None = None,
+    scene_start: int | None = None,
+    scene_end: int | None = None,
     port: int = DEFAULT_LABEL_UI_PORT,
     open_browser: bool = False,
 ) -> None:
@@ -155,6 +166,8 @@ def run_label_tool(
         manifest_path=manifest_path,
         label_store_path=label_store_path,
         split_filter=split_filter,
+        scene_start=scene_start,
+        scene_end=scene_end,
     )
     handler = _build_handler(state)
     httpd = ThreadingHTTPServer(("127.0.0.1", port), handler)

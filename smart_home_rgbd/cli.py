@@ -67,6 +67,8 @@ def cmd_label_ui(args: argparse.Namespace) -> int:
         manifest_path=Path(args.manifest),
         label_store_path=Path(args.labels),
         split_filter=args.split,
+        scene_start=args.scene_start,
+        scene_end=args.scene_end,
         port=args.port,
         open_browser=args.open_browser,
     )
@@ -99,12 +101,14 @@ def build_parser() -> argparse.ArgumentParser:
     prep_parser.add_argument("--output", default=str(DEFAULT_INSTANCE_MANIFEST_JSON))
     prep_parser.set_defaults(func=cmd_prepare_instances)
 
-    ui_parser = subparsers.add_parser("label-ui", help="Launch the local Tkinter labeling tool")
+    ui_parser = subparsers.add_parser("label-ui", help="Launch the local browser labeling tool")
     ui_parser.add_argument("--root", default=str(DEFAULT_SUNRGBD_ROOT))
     ui_parser.add_argument("--seed-csv", default=str(DEFAULT_MANUAL_LABELS_CSV))
     ui_parser.add_argument("--manifest", default=str(DEFAULT_INSTANCE_MANIFEST_JSON))
     ui_parser.add_argument("--labels", default=str(DEFAULT_INSTANCE_LABELS_JSON))
     ui_parser.add_argument("--split", default=None)
+    ui_parser.add_argument("--scene-start", type=int, default=None)
+    ui_parser.add_argument("--scene-end", type=int, default=None)
     ui_parser.add_argument("--port", type=int, default=DEFAULT_LABEL_UI_PORT)
     ui_parser.add_argument("--open-browser", action="store_true")
     ui_parser.set_defaults(func=cmd_label_ui)

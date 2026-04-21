@@ -57,8 +57,34 @@ http://127.0.0.1:8765/
 - Click `Save` often.
 - The shared progress lives in `artifacts/manual_object_state_labels.json`.
 
+## Assigned-Range Workflow
+
+If teammates are labeling different scene ranges, do not keep writing into the same shared JSON.
+Use a personal label file instead.
+
+Example for scenes `1-70`:
+
+```bash
+./launch_annotation_ui.sh \
+  --labels artifacts/labels/jw_1_70.json \
+  --scene-start 1 \
+  --scene-end 70
+```
+
+Example for scenes `71-138`:
+
+```bash
+./launch_annotation_ui.sh \
+  --labels artifacts/labels/teammate_71_138.json \
+  --scene-start 71 \
+  --scene-end 138
+```
+
+This keeps each person's saved labels in a separate file and avoids most Git merge conflicts.
+
 ## Collaboration
 
 - Do not commit the full SUNRGBD dataset.
-- Commit only code and the shared annotation files.
-- If multiple people annotate in parallel, merge `artifacts/manual_object_state_labels.json` carefully.
+- Commit only code and annotation files.
+- Prefer one label file per person or per assigned scene range under `artifacts/labels/`.
+- Avoid having multiple people edit `artifacts/manual_object_state_labels.json` in parallel.

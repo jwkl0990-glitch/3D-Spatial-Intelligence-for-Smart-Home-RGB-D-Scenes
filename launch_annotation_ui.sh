@@ -18,4 +18,4 @@ if [ ! -d "SUNRGBD" ]; then
   exit 1
 fi
 
-exec .venv/bin/python -m smart_home_rgbd.cli label-ui --port 8765
+exec .venv/bin/python -m smart_home_rgbd.cli label-ui --port 8765 "$@"
