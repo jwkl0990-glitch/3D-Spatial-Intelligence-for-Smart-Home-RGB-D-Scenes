@@ -1,0 +1,32 @@
+{
+  "source_labels": "artifacts/labels/review_round2_states_restored_geometry_fixed.json",
+  "clean_labels": "Clear_data/annotations/clean_object_state_labels.json",
+  "total_scenes": 276,
+  "total_instances": 600,
+  "labeled_non_unknown_instances": 521,
+  "bad_polygon_instances": 62,
+  "instances_with_overlay_offset": 10,
+  "cleared_positive_points": 5,
+  "cleared_negative_points": 718,
+  "notes": "All SAM2 positive_points and negative_points were cleared because current points were accidental clicks, not curated prompts.",
+  "state_counts_by_category": {
+    "door": {
+      "closed": 103,
+      "unknown": 36,
+      "open": 51,
+      "unclear": 7
+    },
+    "lamp": {
+      "on": 70,
+      "off": 89,
+      "unknown": 19,
+      "unclear": 10
+    },
+    "monitor_or_tv": {
+      "off": 142,
+      "unclear": 12,
+      "unknown": 24,
+      "on": 37
+    }
+  }
+}

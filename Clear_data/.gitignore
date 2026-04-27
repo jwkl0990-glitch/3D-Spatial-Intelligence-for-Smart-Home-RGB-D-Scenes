@@ -1,0 +1,4 @@
+# Generated from local SUNRGBD images; reproducible but not pushed.
+modeling/crops/
+modeling/models/
+*.pkl

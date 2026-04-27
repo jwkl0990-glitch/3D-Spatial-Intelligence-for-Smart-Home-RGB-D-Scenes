@@ -1,0 +1,42 @@
+{
+  "total_seed_scenes": 276,
+  "scene_partition_counts": {
+    "train_candidate": 258,
+    "validation_holdout": 18
+  },
+  "scene_status_counts": {
+    "complete_scene": 142,
+    "incomplete_scene": 134
+  },
+  "instance_state_counts": {
+    "door": {
+      "closed": 103,
+      "unknown": 36,
+      "open": 51,
+      "unclear": 7
+    },
+    "monitor_or_tv": {
+      "off": 142,
+      "unclear": 12,
+      "unknown": 24,
+      "on": 37
+    },
+    "lamp": {
+      "on": 70,
+      "off": 89,
+      "unknown": 19,
+      "unclear": 10
+    }
+  },
+  "instance_quality_counts": {
+    "door_bad_polygon": 34,
+    "lamp_bad_polygon": 12,
+    "monitor_or_tv_bad_polygon": 16
+  },
+  "output_files": {
+    "scene_status_csv": "Clear_data/modeling/scene_status.csv",
+    "instance_state_csv": "Clear_data/modeling/instance_state_dataset.csv",
+    "train_ready_instances_csv": "Clear_data/modeling/train_ready_instances.csv",
+    "validation_holdout_csv": "Clear_data/modeling/validation_holdout_scenes.csv"
+  }
+}
